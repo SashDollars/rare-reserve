@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RARE RESERVE — South African Luxury Fashion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500;600&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --stone-50: #faf9f7;
+    --stone-100: #f2ede6;
+    --stone-200: #e5ddd0;
+    --stone-300: #cec0ad;
+    --stone-400: #b5a08a;
+    --stone-500: #9a8570;
+    --stone-600: #7d6a57;
+    --stone-700: #5f5040;
+    --stone-800: #3e3328;
+    --stone-900: #1e1910;
+    --gold-100: #f5e6c0;
+    --gold-200: #e8ca7a;
+    --gold-300: #d4a843;
+    --gold-400: #c49225;
+    --gold-500: #a87b18;
+    --gold-600: #8a6312;
+    --cream: #f8f4ed;
+    --ink: #1a1510;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Jost', sans-serif; background: var(--stone-50); color: var(--ink); overflow-x: hidden; cursor: none; }
+
+  .cursor { position: fixed; width: 12px; height: 12px; background: var(--gold-400); border-radius: 50%; pointer-events: none; z-index: 99999; transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease, background 0.3s ease; mix-blend-mode: multiply; }
+  .cursor-ring { position: fixed; width: 40px; height: 40px; border: 1px solid var(--gold-300); border-radius: 50%; pointer-events: none; z-index: 99998; transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease; opacity: 0.7; }
+
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"); background-size: 200px; pointer-events: none; z-index: 9999; opacity: 0.4; }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--stone-100); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-400); border-radius: 2px; }
+
+  /* ANNOUNCEMENT */
+  .announcement { background: var(--stone-900); color: var(--gold-200); text-align: center; padding: 10px 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.3em; transition: opacity 0.5s ease; }
+  .announcement span { color: var(--gold-400); }
+
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 1000; background: rgba(248,244,237,0.96); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gold-200); padding: 0 60px; }
+  .nav-inner { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 72px; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--stone-700); text-decoration: none; transition: color 0.3s ease; position: relative; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--gold-400); transition: width 0.4s ease; }
+  .nav-links a:hover { color: var(--gold-500); }
+  .nav-links a:hover::after { width: 100%; }
+  .logo { text-align: center; }
+  .logo-text { font-family: 'Cinzel', serif; font-size: 1.35rem; letter-spacing: 0.35em; color: var(--stone-900); font-weight: 600; text-decoration: none; display: block; }
+  .logo-sub { display: block; font-family: 'Cormorant Garamond', serif; font-size: 0.6rem; letter-spacing: 0.45em; color: var(--gold-500); font-style: italic; margin-top: -2px; font-weight: 300; }
+  .nav-right { display: flex; justify-content: flex-end; gap: 24px; align-items: center; }
+  .nav-icon { width: 18px; height: 18px; color: var(--stone-700); cursor: pointer; transition: color 0.3s ease; flex-shrink: 0; }
+  .nav-icon:hover { color: var(--gold-500); }
+  .cart-wrap { position: relative; cursor: pointer; }
+  .cart-count { position: absolute; top: -6px; right: -8px; display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; background: var(--gold-400); color: white; border-radius: 50%; font-size: 0.5rem; font-weight: 600; }
+  .nav-location { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.15em; color: var(--gold-500); border: 1px solid var(--gold-300); padding: 4px 10px; }
+
+  /* HERO */
+  .hero { position: relative; height: 92vh; min-height: 650px; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
+  .hero-left { background: var(--stone-900); position: relative; display: flex; align-items: flex-end; padding: 80px 70px; overflow: hidden; }
+  .hero-left::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 60%, rgba(196,146,37,0.15) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(196,146,37,0.08) 0%, transparent 50%); }
+  .hero-left-deco { position: absolute; top: 50px; right: 50px; font-family: 'Cormorant Garamond', serif; font-size: 14rem; font-weight: 300; color: rgba(196,146,37,0.05); font-style: italic; line-height: 1; user-select: none; pointer-events: none; }
+  .hero-left-content { position: relative; z-index: 2; }
+  .hero-eyebrow { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.4em; color: var(--gold-400); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; opacity: 0; animation: fadeUp 0.9s 0.2s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .hero-eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--gold-400); }
+  .hero-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem,5.5vw,6rem); font-weight: 300; color: var(--stone-50); line-height: 1.05; margin-bottom: 28px; opacity: 0; animation: fadeUp 0.9s 0.4s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .hero-headline em { font-style: italic; color: var(--gold-300); }
+  .hero-desc { font-family: 'Jost', sans-serif; font-weight: 200; font-size: 0.85rem; letter-spacing: 0.08em; color: var(--stone-400); max-width: 380px; line-height: 1.8; margin-bottom: 48px; opacity: 0; animation: fadeUp 0.9s 0.6s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .hero-cta { opacity: 0; animation: fadeUp 0.9s 0.8s cubic-bezier(0.22,1,0.36,1) forwards; display: flex; flex-wrap: wrap; gap: 12px; }
+
+  .btn-primary { display: inline-flex; align-items: center; gap: 16px; font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.25em; color: var(--stone-900); background: var(--gold-300); padding: 16px 36px; text-decoration: none; transition: all 0.4s ease; position: relative; overflow: hidden; }
+  .btn-primary::before { content: ''; position: absolute; inset: 0; background: var(--gold-400); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+  .btn-primary:hover::before { transform: scaleX(1); }
+  .btn-primary span { position: relative; z-index: 1; }
+  .btn-primary svg { position: relative; z-index: 1; transition: transform 0.3s ease; }
+  .btn-primary:hover svg { transform: translateX(6px); }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 12px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.25em; color: var(--stone-300); background: transparent; border: 1px solid rgba(196,146,37,0.3); padding: 15px 32px; text-decoration: none; transition: all 0.4s ease; }
+  .btn-ghost:hover { border-color: var(--gold-400); color: var(--gold-300); }
+
+  .hero-right { position: relative; overflow: hidden; }
+  .hero-right-pattern { position: absolute; inset: 0; background-image: repeating-linear-gradient(-45deg, transparent, transparent 60px, rgba(196,146,37,0.04) 60px, rgba(196,146,37,0.04) 61px); z-index: 1; }
+  .hero-fashion-grid { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .fashion-cell { position: relative; overflow: hidden; }
+  .fashion-cell-inner { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; }
+  .fashion-cell:nth-child(1) { background: linear-gradient(145deg, #3e3328, #5f5040); grid-row: span 2; }
+  .fashion-cell:nth-child(2) { background: linear-gradient(145deg, #cec0ad, #b5a08a); }
+  .fashion-cell:nth-child(3) { background: linear-gradient(145deg, #9a8570, #7d6a57); }
+  .fashion-label { font-family: 'Cormorant Garamond', serif; color: rgba(248,244,237,0.9); font-size: 1.8rem; font-style: italic; font-weight: 300; line-height: 1.1; }
+  .fashion-brand { font-family: 'Cinzel', serif; font-size: 0.5rem; letter-spacing: 0.3em; color: var(--gold-300); margin-top: 4px; }
+  .cell-price { font-family: 'Jost', sans-serif; font-size: 0.7rem; color: rgba(248,244,237,0.6); font-weight: 300; margin-top: 2px; }
+
+  .hero-badge { position: absolute; top: 40px; right: 40px; width: 100px; height: 100px; background: var(--stone-900); border: 1px solid var(--gold-400); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; animation: rotateBadge 20s linear infinite; }
+  .hero-badge-text { font-family: 'Cinzel', serif; font-size: 0.45rem; letter-spacing: 0.15em; color: var(--gold-300); text-align: center; line-height: 1.5; }
+  .hero-badge-star { color: var(--gold-400); font-size: 1.1rem; }
+  @keyframes rotateBadge { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  /* MARQUEE */
+  .marquee-section { border-top: 1px solid var(--gold-200); border-bottom: 1px solid var(--gold-200); background: var(--stone-900); padding: 14px 0; overflow: hidden; }
+  .marquee-track { display: flex; animation: marquee 25s linear infinite; white-space: nowrap; }
+  .marquee-item { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.3em; color: var(--stone-400); padding: 0 36px; flex-shrink: 0; }
+  .marquee-dot { color: var(--gold-400); }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* SECTIONS */
+  .section { padding: 100px 60px; }
+  .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 60px; }
+  .section-eyebrow { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.35em; color: var(--gold-500); margin-bottom: 12px; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem,4vw,3.5rem); font-weight: 300; color: var(--stone-900); line-height: 1.1; }
+  .section-title em { font-style: italic; color: var(--gold-500); }
+  .view-all { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--stone-600); text-decoration: none; border-bottom: 1px solid var(--gold-300); padding-bottom: 3px; transition: color 0.3s ease; white-space: nowrap; }
+  .view-all:hover { color: var(--gold-500); }
+
+  /* BRANDS */
+  .brands-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 2px; }
+  .brand-card { background: var(--stone-100); aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.4s ease; position: relative; overflow: hidden; border: 1px solid transparent; }
+  .brand-card::before { content: ''; position: absolute; inset: 0; background: var(--stone-900); transform: scaleY(0); transform-origin: bottom; transition: transform 0.4s ease; }
+  .brand-card:hover { border-color: var(--gold-300); }
+  .brand-card:hover::before { transform: scaleY(1); }
+  .brand-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 500; letter-spacing: 0.06em; color: var(--stone-700); position: relative; z-index: 1; transition: color 0.4s ease; text-align: center; padding: 0 16px; }
+  .brand-origin { font-family: 'Jost', sans-serif; font-size: 0.55rem; font-weight: 300; letter-spacing: 0.2em; color: var(--stone-400); margin-top: 6px; position: relative; z-index: 1; transition: color 0.4s ease; text-align: center; }
+  .brand-card:hover .brand-name { color: var(--gold-300); }
+  .brand-card.featured { grid-column: span 2; grid-row: span 2; background: var(--stone-900); }
+  .brand-card.featured .brand-name { color: var(--gold-300); font-size: 2rem; }
+  .brand-card.featured .brand-origin { color: var(--stone-500); font-size: 0.6rem; }
+  .brand-card.featured::before { display: none; }
+  .featured-tag { position: absolute; top: 24px; right: 24px; font-family: 'Cinzel', serif; font-size: 0.45rem; letter-spacing: 0.25em; color: var(--gold-400); border: 1px solid var(--gold-500); padding: 4px 10px; z-index: 2; }
+  .brand-deco { position: absolute; font-family: 'Cormorant Garamond', serif; font-size: 8rem; font-style: italic; color: rgba(196,146,37,0.05); bottom: -10px; left: 10px; line-height: 1; user-select: none; pointer-events: none; }
+
+  /* PRODUCTS */
+  .products-section { background: var(--stone-100); padding: 100px 60px; }
+  .products-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+  .product-card { background: var(--cream); cursor: pointer; position: relative; overflow: hidden; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(30,25,16,0.12); }
+  .product-image { aspect-ratio: 3/4; position: relative; overflow: hidden; }
+  .product-img-bg { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: transform 0.6s ease; }
+  .product-card:hover .product-img-bg { transform: scale(1.04); }
+  .prod-bg-1 { background: linear-gradient(160deg, #2c2017, #4a3828, #3e3025); }
+  .prod-bg-2 { background: linear-gradient(160deg, #d4c4b0, #c0aa90, #a89070); }
+  .prod-bg-3 { background: linear-gradient(160deg, #1a1a1a, #2d2d2d, #1a1a1a); }
+  .prod-bg-4 { background: linear-gradient(160deg, #8b7355, #a0896b, #7a6448); }
+  .prod-bg-5 { background: linear-gradient(160deg, #f0e8d8, #e0d0b8, #d0bca0); }
+  .prod-bg-6 { background: linear-gradient(160deg, #2a1f14, #3d2f20, #2a1f14); }
+  .prod-bg-7 { background: linear-gradient(160deg, #c8b898, #b8a080, #a08860); }
+  .prod-bg-8 { background: linear-gradient(160deg, #1c1c1c, #333, #1c1c1c); }
+  .product-badge { position: absolute; top: 16px; left: 16px; font-family: 'Cinzel', serif; font-size: 0.45rem; letter-spacing: 0.2em; padding: 4px 10px; z-index: 2; }
+  .badge-new { background: var(--stone-900); color: var(--gold-300); }
+  .badge-sale { background: var(--gold-400); color: var(--stone-900); }
+  .badge-exclusive { background: var(--stone-700); color: var(--gold-200); }
+  .product-wishlist { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; background: rgba(248,244,237,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transition: opacity 0.3s ease; z-index: 2; font-size: 1rem; }
+  .product-card:hover .product-wishlist { opacity: 1; }
+  .product-info { padding: 20px; }
+  .product-brand { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.2em; color: var(--gold-500); margin-bottom: 6px; }
+  .product-name { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 400; color: var(--stone-800); line-height: 1.3; margin-bottom: 10px; }
+  .product-pricing { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .price-current { font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 400; color: var(--stone-800); }
+  .price-original { font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 300; color: var(--stone-400); text-decoration: line-through; }
+  .price-save { font-family: 'Cinzel', serif; font-size: 0.5rem; letter-spacing: 0.1em; color: var(--gold-500); }
+  .product-add { width: 100%; padding: 12px; background: var(--stone-900); color: var(--gold-300); border: none; font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.2em; cursor: pointer; margin-top: 14px; opacity: 0; transform: translateY(8px); transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease; }
+  .product-card:hover .product-add { opacity: 1; transform: translateY(0); }
+  .product-add:hover { background: var(--gold-500); color: var(--stone-900); }
+
+  .prod-art { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; padding: 24px; }
+  .prod-art-shape { border: 1px solid rgba(255,255,255,0.15); padding: 24px 18px; margin-bottom: 14px; position: relative; }
+  .prod-art-shape::before { content: ''; position: absolute; inset: 5px; border: 1px solid rgba(196,146,37,0.25); }
+  .prod-visual { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; text-align: center; line-height: 1.2; font-size: clamp(0.9rem,1.2vw,1.2rem); }
+  .prod-visual.light { color: rgba(248,244,237,0.88); }
+  .prod-visual.dark { color: rgba(30,25,16,0.78); }
+  .prod-tag { font-family: 'Cinzel', serif; font-size: 0.48rem; letter-spacing: 0.28em; margin-top: 6px; text-align: center; }
+  .prod-tag.light { color: rgba(196,146,37,0.7); }
+  .prod-tag.dark { color: rgba(30,25,16,0.45); }
+
+  /* EDITORIAL */
+  .editorial { display: grid; grid-template-columns: 1fr 1fr; min-height: 600px; }
+  .editorial-left { background: var(--stone-900); padding: 100px 80px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+  .editorial-left::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 80%, rgba(196,146,37,0.12) 0%, transparent 55%); }
+  .editorial-left-deco { position: absolute; right: -40px; top: -20px; font-family: 'Cormorant Garamond', serif; font-size: 18rem; font-weight: 300; font-style: italic; color: rgba(196,146,37,0.04); line-height: 1; user-select: none; pointer-events: none; }
+  .editorial-content { position: relative; z-index: 2; }
+  .editorial-eyebrow { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.4em; color: var(--gold-500); margin-bottom: 32px; }
+  .editorial-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem,4vw,4.5rem); font-weight: 300; color: var(--stone-50); line-height: 1.08; margin-bottom: 28px; }
+  .editorial-title em { font-style: italic; color: var(--gold-300); }
+  .editorial-body { font-family: 'Jost', sans-serif; font-weight: 200; font-size: 0.85rem; line-height: 1.9; color: var(--stone-400); max-width: 420px; margin-bottom: 48px; }
+  .editorial-stats { display: flex; gap: 48px; padding-top: 40px; border-top: 1px solid rgba(196,146,37,0.2); position: relative; z-index: 2; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: var(--gold-300); line-height: 1; }
+  .stat-label { font-family: 'Cinzel', serif; font-size: 0.5rem; letter-spacing: 0.2em; color: var(--stone-500); margin-top: 6px; }
+  .editorial-right { background: var(--stone-200); display: grid; grid-template-rows: 1fr 1fr; }
+  .editorial-panel { padding: 60px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden; cursor: pointer; transition: background 0.4s ease; }
+  .editorial-panel:first-child { background: var(--stone-300); border-bottom: 2px solid var(--gold-200); }
+  .editorial-panel:last-child { background: var(--stone-800); }
+  .editorial-panel:hover:first-child { background: var(--stone-400); }
+  .editorial-panel:hover:last-child { background: var(--stone-700); }
+  .panel-number { position: absolute; top: 40px; right: 50px; font-family: 'Cormorant Garamond', serif; font-size: 5rem; font-weight: 300; color: rgba(196,146,37,0.12); line-height: 1; }
+  .panel-eyebrow { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.3em; color: var(--gold-400); margin-bottom: 12px; }
+  .panel-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; line-height: 1.2; }
+  .editorial-panel:first-child .panel-title { color: var(--stone-800); }
+  .editorial-panel:last-child .panel-title { color: var(--stone-100); }
+  .panel-link { display: inline-flex; align-items: center; gap: 10px; font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.2em; margin-top: 20px; text-decoration: none; transition: gap 0.3s ease; }
+  .editorial-panel:first-child .panel-link { color: var(--stone-600); }
+  .editorial-panel:last-child .panel-link { color: var(--gold-400); }
+  .editorial-panel:hover .panel-link { gap: 18px; }
+
+  /* NEW ARRIVALS */
+  .new-arrivals { padding: 100px 60px; }
+  .arrivals-scroll { display: flex; gap: 20px; overflow-x: auto; scrollbar-width: none; padding-bottom: 10px; }
+  .arrivals-scroll::-webkit-scrollbar { display: none; }
+  .arrival-card { flex-shrink: 0; width: 280px; cursor: pointer; transition: transform 0.4s ease; }
+  .arrival-card:hover { transform: translateY(-4px); }
+  .arrival-image { aspect-ratio: 2/3; overflow: hidden; margin-bottom: 16px; }
+  .arrival-img-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: transform 0.6s ease; }
+  .arrival-card:hover .arrival-img-inner { transform: scale(1.04); }
+  .arr-1 { background: linear-gradient(145deg,#1a1510,#2d2520); }
+  .arr-2 { background: linear-gradient(145deg,#c8b48a,#b09870); }
+  .arr-3 { background: linear-gradient(145deg,#3d3228,#524438); }
+  .arr-4 { background: linear-gradient(145deg,#e8dcc8,#d0c0a0); }
+  .arr-5 { background: linear-gradient(145deg,#222,#333); }
+  .arr-6 { background: linear-gradient(145deg,#8a7060,#7a6050); }
+  .arrival-brand { font-family: 'Cinzel', serif; font-size: 0.5rem; letter-spacing: 0.2em; color: var(--gold-500); margin-bottom: 4px; }
+  .arrival-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--stone-800); margin-bottom: 8px; }
+  .arrival-price { font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 300; color: var(--stone-600); }
+
+  /* PROMISE */
+  .promise-strip { background: var(--stone-900); padding: 60px; display: grid; grid-template-columns: repeat(4,1fr); gap: 40px; border-top: 1px solid rgba(196,146,37,0.2); border-bottom: 1px solid rgba(196,146,37,0.2); }
+  .promise-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; }
+  .promise-icon { width: 44px; height: 44px; border: 1px solid var(--gold-500); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .promise-title { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--stone-100); }
+  .promise-desc { font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 200; color: var(--stone-500); line-height: 1.6; }
+
+  /* NEWSLETTER */
+  .newsletter { padding: 120px 60px; background: var(--cream); text-align: center; position: relative; overflow: hidden; }
+  .newsletter::before { content: 'R'; position: absolute; font-family: 'Cormorant Garamond', serif; font-size: 40rem; font-weight: 300; font-style: italic; color: rgba(196,146,37,0.04); top: 50%; left: 50%; transform: translate(-50%,-50%); line-height: 1; user-select: none; pointer-events: none; }
+  .newsletter-eyebrow { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.4em; color: var(--gold-500); margin-bottom: 20px; position: relative; }
+  .newsletter-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem,5vw,5rem); font-weight: 300; color: var(--stone-900); line-height: 1.1; margin-bottom: 16px; position: relative; }
+  .newsletter-title em { font-style: italic; color: var(--gold-500); }
+  .newsletter-sub { font-family: 'Jost', sans-serif; font-weight: 200; font-size: 0.85rem; color: var(--stone-500); margin-bottom: 48px; letter-spacing: 0.05em; position: relative; }
+  .newsletter-form { display: flex; max-width: 500px; margin: 0 auto; position: relative; }
+  .newsletter-input { flex: 1; padding: 16px 24px; border: 1px solid var(--stone-300); border-right: none; background: white; font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 300; color: var(--stone-700); outline: none; transition: border-color 0.3s ease; }
+  .newsletter-input:focus { border-color: var(--gold-400); }
+  .newsletter-input::placeholder { color: var(--stone-400); }
+  .newsletter-btn { padding: 16px 32px; background: var(--stone-900); color: var(--gold-300); border: none; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; cursor: pointer; transition: background 0.3s ease; white-space: nowrap; }
+  .newsletter-btn:hover { background: var(--gold-500); color: var(--stone-900); }
+  .newsletter-note { font-family: 'Jost', sans-serif; font-size: 0.65rem; font-weight: 300; color: var(--stone-400); margin-top: 16px; position: relative; }
+
+  /* FOOTER */
+  footer { background: var(--stone-900); padding: 80px 60px 40px; color: var(--stone-400); border-top: 1px solid rgba(196,146,37,0.2); }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+  .footer-brand-name { font-family: 'Cinzel', serif; font-size: 1.1rem; letter-spacing: 0.3em; color: var(--gold-300); font-weight: 600; }
+  .footer-brand-sub { display: block; font-family: 'Cormorant Garamond', serif; font-size: 0.65rem; letter-spacing: 0.4em; color: var(--stone-500); font-style: italic; margin-top: 4px; }
+  .footer-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--stone-500); margin-top: 20px; line-height: 1.6; max-width: 260px; font-weight: 300; }
+  .footer-social { display: flex; gap: 12px; margin-top: 28px; }
+  .social-btn { width: 36px; height: 36px; border: 1px solid rgba(196,146,37,0.3); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: border-color 0.3s ease, background 0.3s ease; }
+  .social-btn:hover { border-color: var(--gold-400); background: rgba(196,146,37,0.1); }
+  .social-btn svg { width: 14px; height: 14px; color: var(--stone-400); }
+  .footer-col-title { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.3em; color: var(--gold-400); margin-bottom: 24px; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 12px; }
+  .footer-links a { font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 300; color: var(--stone-500); text-decoration: none; letter-spacing: 0.05em; transition: color 0.3s ease; }
+  .footer-links a:hover { color: var(--gold-300); }
+  .footer-bottom { border-top: 1px solid rgba(196,146,37,0.15); padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .footer-legal { font-family: 'Jost', sans-serif; font-size: 0.65rem; font-weight: 300; color: var(--stone-600); }
+  .footer-pay { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .pay-chip { font-family: 'Cinzel', serif; font-size: 0.45rem; letter-spacing: 0.1em; color: var(--stone-500); border: 1px solid rgba(196,146,37,0.2); padding: 4px 8px; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* TOAST */
+  .toast { position: fixed; bottom: 30px; right: 30px; background: var(--stone-900); color: var(--gold-300); font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; padding: 16px 28px; border: 1px solid var(--gold-500); z-index: 10000; transform: translateY(100px); opacity: 0; transition: all 0.4s cubic-bezier(0.22,1,0.36,1); }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  @media (max-width: 1100px) {
+    .brands-grid { grid-template-columns: repeat(4,1fr); }
+    .products-grid { grid-template-columns: repeat(3,1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .promise-strip { grid-template-columns: repeat(2,1fr); }
+  }
+  @media (max-width: 800px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; height: auto; }
+    .hero-left { padding: 60px 28px; min-height: 70vh; }
+    .hero-right { height: 50vh; }
+    .section, .products-section, .new-arrivals { padding: 60px 20px; }
+    .brands-grid { grid-template-columns: repeat(3,1fr); }
+    .products-grid { grid-template-columns: repeat(2,1fr); }
+    .editorial { grid-template-columns: 1fr; }
+    .editorial-left { padding: 60px 28px; }
+    .editorial-panel { padding: 40px 28px; }
+    .promise-strip { padding: 40px 20px; }
+    .newsletter { padding: 80px 20px; }
+    footer { padding: 60px 20px 30px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<div class="toast" id="toast">ADDED TO BAG ✦</div>
+
+<!-- ANNOUNCEMENT -->
+<div class="announcement" id="announcement">
+  FREE DELIVERY ON ORDERS OVER R4,500 &nbsp;<span>✦</span>&nbsp; AUTHENTICITY GUARANTEED &nbsp;<span>✦</span>&nbsp; COMPLIMENTARY GIFT WRAPPING AVAILABLE
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <ul class="nav-links">
+      <li><a href="#">New Arrivals</a></li>
+      <li><a href="#">Designers</a></li>
+      <li><a href="#">Women</a></li>
+      <li><a href="#">Men</a></li>
+    </ul>
+    <div class="logo">
+      <a href="#" class="logo-text">RARE RESERVE</a>
+      <span class="logo-sub">Johannesburg · Cape Town · Durban</span>
+    </div>
+    <div class="nav-right">
+      <span class="nav-location">ZAR</span>
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <div class="cart-wrap">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count" id="cart-count">0</span>
+      </div>
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-left-deco">R</div>
+    <div class="hero-left-content">
+      <div class="hero-eyebrow">Curated Luxury · Est. Johannesburg</div>
+      <h1 class="hero-headline">Where <em>Rare</em><br>Meets<br>Reserved</h1>
+      <p class="hero-desc">South Africa's definitive destination for luxury and hype fashion. Authentic pieces from the world's most coveted houses — at prices that move.</p>
+      <div class="hero-cta">
+        <a href="#" class="btn-primary">
+          <span>SHOP THE COLLECTION</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#" class="btn-ghost">VIEW DESIGNERS</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-pattern"></div>
+    <div class="hero-fashion-grid">
+      <div class="fashion-cell">
+        <div class="fashion-cell-inner">
+          <div class="fashion-label">MaXhosa<br>Africa</div>
+          <div class="fashion-brand">PROUDLY SOUTH AFRICAN</div>
+          <div class="cell-price">From R 4,200</div>
+        </div>
+      </div>
+      <div class="fashion-cell">
+        <div class="fashion-cell-inner">
+          <div class="fashion-label" style="color:rgba(30,25,16,0.85);font-size:1.5rem;">Chanel</div>
+          <div class="fashion-brand">PARIS · SS25</div>
+          <div class="cell-price" style="color:rgba(30,25,16,0.5);">From R 42,000</div>
+        </div>
+      </div>
+      <div class="fashion-cell">
+        <div class="fashion-cell-inner">
+          <div class="fashion-label" style="font-size:1.3rem;">Jacquemus</div>
+          <div class="fashion-brand">NEW ARRIVALS</div>
+          <div class="cell-price">From R 8,900</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <span class="hero-badge-star">✦</span>
+      <div class="hero-badge-text">100%<br>AUTHENTIC<br>VERIFIED</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track" aria-hidden="true">
+    <span class="marquee-item">MAXHOSA AFRICA <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">CHANEL <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">BOTTEGA VENETA <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">SAINT LAURENT <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">PRADA <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">JACQUEMUS <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">TOTEME <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">LORO PIANA <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">TOM FORD <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">BRUNELLO CUCINELLI <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">MAXHOSA AFRICA <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">CHANEL <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">BOTTEGA VENETA <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">SAINT LAURENT <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">PRADA <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">JACQUEMUS <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">TOTEME <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">LORO PIANA <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">TOM FORD <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">BRUNELLO CUCINELLI <span class="marquee-dot">◆</span></span>
+  </div>
+</div>
+
+<!-- BRANDS -->
+<section class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">OUR HOUSES</div>
+      <h2 class="section-title">The World's Finest,<br><em>Curated for You</em></h2>
+    </div>
+    <a href="#" class="view-all">View all designers →</a>
+  </div>
+  <div class="brands-grid">
+    <div class="brand-card featured fade-in">
+      <div class="brand-deco">M</div>
+      <div class="featured-tag">SA HERITAGE</div>
+      <div class="brand-name">MaXhosa<br>Africa</div>
+      <div class="brand-origin">Johannesburg · South Africa</div>
+    </div>
+    <div class="brand-card fade-in"><div class="brand-name">Chanel</div><div class="brand-origin">Paris, France</div></div>
+    <div class="brand-card fade-in"><div class="brand-name">Bottega<br>Veneta</div><div class="brand-origin">Vicenza, Italy</div></div>
+    <div class="brand-card fade-in"><div class="brand-name">Saint<br>Laurent</div><div class="brand-origin">Paris, France</div></div>
+    <div class="brand-card fade-in"><div class="brand-name">Prada</div><div class="brand-origin">Milan, Italy</div></div>
+    <div class="brand-card fade-in"><div class="brand-name">Jacquemus</div><div class="brand-origin">Paris, France</div></div>
+    <div class="brand-card fade-in"><div class="brand-name">Toteme</div><div class="brand-origin">Stockholm, Sweden</div></div>
+    <div class="brand-card fade-in"><div class="brand-name">Loro<br>Piana</div><div class="brand-origin">Quarona, Italy</div></div>
+    <div class="brand-card fade-in"><div class="brand-name">Tom Ford</div><div class="brand-origin">New York, USA</div></div>
+    <div class="brand-card fade-in"><div class="brand-name">Brunello<br>Cucinelli</div><div class="brand-origin">Solomeo, Italy</div></div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products-section">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">RARE PICKS</div>
+      <h2 class="section-title">Editor's <em>Selection</em></h2>
+    </div>
+    <a href="#" class="view-all">Shop all →</a>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card fade-in">
+      <div class="product-image">
+        <div class="product-img-bg prod-bg-1">
+          <div class="prod-art">
+            <div class="prod-art-shape">
+              <div class="prod-visual light">Zigzag Knit<br>Cardigan</div>
+            </div>
+            <div class="prod-tag light">MAXHOSA AFRICA</div>
+          </div>
+        </div>
+        <span class="product-badge badge-exclusive">EXCLUSIVE</span>
+        <div class="product-wishlist">♡</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">MaXhosa Africa</div>
+        <div class="product-name">Heritage Zigzag Knit Cardigan</div>
+        <div class="product-pricing"><span class="price-current">R 5,800</span><span class="price-original">R 7,200</span><span class="price-save">SAVE 19%</span></div>
+        <button class="product-add" onclick="addToBag()">ADD TO BAG</button>
+      </div>
+    </div>
+
+    <div class="product-card fade-in">
+      <div class="product-image">
+        <div class="product-img-bg prod-bg-2">
+          <div class="prod-art">
+            <div class="prod-art-shape">
+              <div class="prod-visual dark">Le Bambino<br>Long</div>
+            </div>
+            <div class="prod-tag dark">JACQUEMUS</div>
+          </div>
+        </div>
+        <span class="product-badge badge-new">NEW</span>
+        <div class="product-wishlist">♡</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Jacquemus</div>
+        <div class="product-name">Le Bambino Long Shoulder Bag</div>
+        <div class="product-pricing"><span class="price-current">R 14,900</span><span class="price-original">R 17,500</span><span class="price-save">SAVE 15%</span></div>
+        <button class="product-add" onclick="addToBag()">ADD TO BAG</button>
+      </div>
+    </div>
+
+    <div class="product-card fade-in">
+      <div class="product-image">
+        <div class="product-img-bg prod-bg-3">
+          <div class="prod-art">
+            <div class="prod-art-shape">
+              <div class="prod-visual light">Intrecciato<br>Cassette</div>
+            </div>
+            <div class="prod-tag light">BOTTEGA VENETA</div>
+          </div>
+        </div>
+        <span class="product-badge badge-exclusive">RARE FIND</span>
+        <div class="product-wishlist">♡</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Bottega Veneta</div>
+        <div class="product-name">Intrecciato Cassette Bag</div>
+        <div class="product-pricing"><span class="price-current">R 38,500</span><span class="price-original">R 44,000</span><span class="price-save">SAVE 13%</span></div>
+        <button class="product-add" onclick="addToBag()">ADD TO BAG</button>
+      </div>
+    </div>
+
+    <div class="product-card fade-in">
+      <div class="product-image">
+        <div class="product-img-bg prod-bg-4">
+          <div class="prod-art">
+            <div class="prod-art-shape">
+              <div class="prod-visual light">Cashmere<br>Turtleneck</div>
+            </div>
+            <div class="prod-tag light">BRUNELLO CUCINELLI</div>
+          </div>
+        </div>
+        <span class="product-badge badge-new">NEW</span>
+        <div class="product-wishlist">♡</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Brunello Cucinelli</div>
+        <div class="product-name">Pure Cashmere Turtleneck Sweater</div>
+        <div class="product-pricing"><span class="price-current">R 22,400</span><span class="price-original">R 28,000</span><span class="price-save">SAVE 20%</span></div>
+        <button class="product-add" onclick="addToBag()">ADD TO BAG</button>
+      </div>
+    </div>
+
+    <div class="product-card fade-in">
+      <div class="product-image">
+        <div class="product-img-bg prod-bg-5">
+          <div class="prod-art">
+            <div class="prod-art-shape">
+              <div class="prod-visual dark">Sac de Jour<br>Mini</div>
+            </div>
+            <div class="prod-tag dark">SAINT LAURENT</div>
+          </div>
+        </div>
+        <span class="product-badge badge-sale">BEST PRICE</span>
+        <div class="product-wishlist">♡</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Saint Laurent</div>
+        <div class="product-name">Sac de Jour Mini Bag</div>
+        <div class="product-pricing"><span class="price-current">R 28,900</span><span class="price-original">R 35,000</span><span class="price-save">SAVE 17%</span></div>
+        <button class="product-add" onclick="addToBag()">ADD TO BAG</button>
+      </div>
+    </div>
+
+    <div class="product-card fade-in">
+      <div class="product-image">
+        <div class="product-img-bg prod-bg-6">
+          <div class="prod-art">
+            <div class="prod-art-shape">
+              <div class="prod-visual light">Re-Nylon<br>Gabardine</div>
+            </div>
+            <div class="prod-tag light">PRADA</div>
+          </div>
+        </div>
+        <span class="product-badge badge-new">NEW</span>
+        <div class="product-wishlist">♡</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Prada</div>
+        <div class="product-name">Re-Nylon Gabardine Coat</div>
+        <div class="product-pricing"><span class="price-current">R 31,200</span><span class="price-original">R 37,500</span><span class="price-save">SAVE 17%</span></div>
+        <button class="product-add" onclick="addToBag()">ADD TO BAG</button>
+      </div>
+    </div>
+
+    <div class="product-card fade-in">
+      <div class="product-image">
+        <div class="product-img-bg prod-bg-7">
+          <div class="prod-art">
+            <div class="prod-art-shape">
+              <div class="prod-visual dark">Baby Cashmere<br>Wrap Coat</div>
+            </div>
+            <div class="prod-tag dark">LORO PIANA</div>
+          </div>
+        </div>
+        <span class="product-badge badge-exclusive">ULTRA RARE</span>
+        <div class="product-wishlist">♡</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Loro Piana</div>
+        <div class="product-name">Baby Cashmere Wrap Coat</div>
+        <div class="product-pricing"><span class="price-current">R 89,000</span><span class="price-original">R 105,000</span><span class="price-save">SAVE 15%</span></div>
+        <button class="product-add" onclick="addToBag()">ADD TO BAG</button>
+      </div>
+    </div>
+
+    <div class="product-card fade-in">
+      <div class="product-image">
+        <div class="product-img-bg prod-bg-8">
+          <div class="prod-art">
+            <div class="prod-art-shape">
+              <div class="prod-visual light">Tobacco<br>Vanille EDP</div>
+            </div>
+            <div class="prod-tag light">TOM FORD</div>
+          </div>
+        </div>
+        <span class="product-badge badge-sale">BEST PRICE</span>
+        <div class="product-wishlist">♡</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Tom Ford</div>
+        <div class="product-name">Tobacco Vanille Eau de Parfum 100ml</div>
+        <div class="product-pricing"><span class="price-current">R 4,200</span><span class="price-original">R 5,800</span><span class="price-save">SAVE 28%</span></div>
+        <button class="product-add" onclick="addToBag()">ADD TO BAG</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDITORIAL SPLIT -->
+<section class="editorial">
+  <div class="editorial-left">
+    <div class="editorial-left-deco">R</div>
+    <div class="editorial-content">
+      <div class="editorial-eyebrow">THE RARE RESERVE STORY</div>
+      <h2 class="editorial-title">Born in<br><em>Joburg.</em><br>Dressed by<br>the World.</h2>
+      <p class="editorial-body">We believe South Africa deserves the same access to the world's finest fashion as London, Paris, or Milan. Rare Reserve bridges that gap — sourcing authentic luxury pieces from the greatest houses on earth, and delivering them to your door with confidence.</p>
+      <a href="#" class="btn-primary">
+        <span>READ OUR STORY</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+    <div class="editorial-stats">
+      <div><div class="stat-num">10+</div><div class="stat-label">LUXURY HOUSES</div></div>
+      <div><div class="stat-num">100%</div><div class="stat-label">AUTHENTICATED</div></div>
+      <div><div class="stat-num">3</div><div class="stat-label">SA CITIES</div></div>
+    </div>
+  </div>
+  <div class="editorial-right">
+    <div class="editorial-panel">
+      <div class="panel-number">01</div>
+      <div class="panel-eyebrow">SA PRIDE</div>
+      <h3 class="panel-title">Support MaXhosa —<br>Africa's Crown Jewel</h3>
+      <a href="#" class="panel-link">Explore the collection →</a>
+    </div>
+    <div class="editorial-panel">
+      <div class="panel-number">02</div>
+      <div class="panel-eyebrow">EXCLUSIVE ACCESS</div>
+      <h3 class="panel-title" style="color:var(--gold-200);">Members Get<br>First Access to Drops</h3>
+      <a href="#" class="panel-link">Join Rare Reserve →</a>
+    </div>
+  </div>
+</section>
+
+<!-- NEW ARRIVALS -->
+<section class="new-arrivals">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">JUST IN</div>
+      <h2 class="section-title">New <em>Arrivals</em></h2>
+    </div>
+    <a href="#" class="view-all">View all new →</a>
+  </div>
+  <div class="arrivals-scroll">
+    <div class="arrival-card">
+      <div class="arrival-image"><div class="arrival-img-inner arr-1"><div class="prod-art"><div class="prod-visual light" style="font-size:0.95rem;">Tribal Weave<br>Evening Dress</div><div class="prod-tag light" style="margin-top:8px;">MAXHOSA</div></div></div></div>
+      <div class="arrival-brand">MaXhosa Africa</div>
+      <div class="arrival-name">Tribal Weave Evening Dress</div>
+      <div class="arrival-price">R 7,400</div>
+    </div>
+    <div class="arrival-card">
+      <div class="arrival-image"><div class="arrival-img-inner arr-2"><div class="prod-art"><div class="prod-visual dark" style="font-size:0.95rem;">Scarf Collar<br>Wool Coat</div><div class="prod-tag dark" style="margin-top:8px;">TOTEME</div></div></div></div>
+      <div class="arrival-brand">Toteme</div>
+      <div class="arrival-name">Scarf Collar Wool Coat</div>
+      <div class="arrival-price">R 18,900</div>
+    </div>
+    <div class="arrival-card">
+      <div class="arrival-image"><div class="arrival-img-inner arr-3"><div class="prod-art"><div class="prod-visual light" style="font-size:0.95rem;">Tribute 110mm<br>Platform Sandal</div><div class="prod-tag light" style="margin-top:8px;">SAINT LAURENT</div></div></div></div>
+      <div class="arrival-brand">Saint Laurent</div>
+      <div class="arrival-name">Tribute 110mm Platform Sandal</div>
+      <div class="arrival-price">R 14,200</div>
+    </div>
+    <div class="arrival-card">
+      <div class="arrival-image"><div class="arrival-img-inner arr-4"><div class="prod-art"><div class="prod-visual dark" style="font-size:0.95rem;">Galleria Small<br>Saffiano Bag</div><div class="prod-tag dark" style="margin-top:8px;">PRADA</div></div></div></div>
+      <div class="arrival-brand">Prada</div>
+      <div class="arrival-name">Galleria Small Saffiano Bag</div>
+      <div class="arrival-price">R 34,800</div>
+    </div>
+    <div class="arrival-card">
+      <div class="arrival-image"><div class="arrival-img-inner arr-5"><div class="prod-art"><div class="prod-visual light" style="font-size:0.95rem;">N°5 Eau<br>de Parfum</div><div class="prod-tag light" style="margin-top:8px;">CHANEL</div></div></div></div>
+      <div class="arrival-brand">Chanel</div>
+      <div class="arrival-name">N°5 Eau de Parfum 100ml</div>
+      <div class="arrival-price">R 5,200</div>
+    </div>
+    <div class="arrival-card">
+      <div class="arrival-image"><div class="arrival-img-inner arr-6"><div class="prod-art"><div class="prod-visual light" style="font-size:0.95rem;">Windsor Wool<br>Mohair Suit</div><div class="prod-tag light" style="margin-top:8px;">TOM FORD</div></div></div></div>
+      <div class="arrival-brand">Tom Ford</div>
+      <div class="arrival-name">Windsor Wool Mohair Suit</div>
+      <div class="arrival-price">R 62,000</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE -->
+<div class="promise-strip">
+  <div class="promise-item">
+    <div class="promise-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c49225" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+    <div class="promise-title">100% AUTHENTICATED</div>
+    <div class="promise-desc">Every piece verified by our luxury authentication experts before it reaches you.</div>
+  </div>
+  <div class="promise-item">
+    <div class="promise-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c49225" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+    <div class="promise-title">SA-WIDE DELIVERY</div>
+    <div class="promise-desc">Complimentary delivery on orders over R4,500. Secure, insured shipping nationwide.</div>
+  </div>
+  <div class="promise-item">
+    <div class="promise-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c49225" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+    <div class="promise-title">BEST MARKET PRICE</div>
+    <div class="promise-desc">We monitor global prices daily to ensure you always receive the most competitive rate.</div>
+  </div>
+  <div class="promise-item">
+    <div class="promise-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c49225" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+    <div class="promise-title">WHITE GLOVE SERVICE</div>
+    <div class="promise-desc">Personal styling consultations and concierge support available 7 days a week.</div>
+  </div>
+</div>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="newsletter-eyebrow">JOIN THE INNER CIRCLE</div>
+  <h2 class="newsletter-title">First Access.<br><em>Always.</em></h2>
+  <p class="newsletter-sub">Receive exclusive early access to new arrivals, private sales, and curated edit drops before anyone else.</p>
+  <div class="newsletter-form">
+    <input type="email" class="newsletter-input" id="nl-input" placeholder="Your email address">
+    <button class="newsletter-btn" id="nl-btn">SUBSCRIBE</button>
+  </div>
+  <p class="newsletter-note">By subscribing you agree to our Privacy Policy. Unsubscribe at any time.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">RARE RESERVE</div>
+      <span class="footer-brand-sub">South African Luxury Fashion</span>
+      <p class="footer-tagline">"Where the world's finest fashion meets Africa's most discerning taste."</p>
+      <div class="footer-social">
+        <div class="social-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+        <div class="social-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
+        <div class="social-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></div>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">SHOP</div>
+      <ul class="footer-links">
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Women's Fashion</a></li>
+        <li><a href="#">Men's Fashion</a></li>
+        <li><a href="#">Bags & Accessories</a></li>
+        <li><a href="#">Fragrance & Beauty</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">DESIGNERS</div>
+      <ul class="footer-links">
+        <li><a href="#">MaXhosa Africa</a></li>
+        <li><a href="#">Chanel</a></li>
+        <li><a href="#">Bottega Veneta</a></li>
+        <li><a href="#">Saint Laurent</a></li>
+        <li><a href="#">Prada</a></li>
+        <li><a href="#">All Designers →</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">HELP & INFO</div>
+      <ul class="footer-links">
+        <li><a href="#">Authentication Promise</a></li>
+        <li><a href="#">Shipping & Returns</a></li>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal">© 2025 Rare Reserve (Pty) Ltd. All rights reserved. Registered in South Africa.</div>
+    <div class="footer-pay">
+      <span class="pay-chip">VISA</span>
+      <span class="pay-chip">MASTERCARD</span>
+      <span class="pay-chip">PAYFLEX</span>
+      <span class="pay-chip">EFT</span>
+      <span class="pay-chip">PAYJUSTNOW</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // CURSOR
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mx = -200, my = -200, rx = -200, ry = -200;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+
+  (function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  })();
+
+  document.querySelectorAll('a, button, .product-card, .brand-card, .arrival-card, .editorial-panel, .social-btn, .cart-wrap').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.width='20px'; cursor.style.height='20px'; ring.style.width='60px'; ring.style.height='60px'; ring.style.opacity='0.35'; });
+    el.addEventListener('mouseleave', () => { cursor.style.width='12px'; cursor.style.height='12px'; ring.style.width='40px'; ring.style.height='40px'; ring.style.opacity='0.7'; });
+  });
+
+  // SCROLL ANIMATIONS
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i * 0.06) + 's';
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+  // CART & TOAST
+  let cartCount = 0;
+  const cartEl = document.getElementById('cart-count');
+  const toast = document.getElementById('toast');
+  let toastTimer;
+
+  function addToBag() {
+    cartCount++;
+    cartEl.textContent = cartCount;
+    clearTimeout(toastTimer);
+    toast.classList.add('show');
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+
+  // NEWSLETTER
+  document.getElementById('nl-btn').addEventListener('click', function() {
+    const input = document.getElementById('nl-input');
+    if (input.value && input.value.includes('@')) {
+      this.textContent = 'WELCOME ✦';
+      this.style.background = 'var(--gold-500)';
+      this.style.color = 'var(--stone-900)';
+      input.value = '';
+      input.placeholder = "You're in the inner circle";
+    }
+  });
+
+  // ANNOUNCEMENT ROTATION
+  const announcements = [
+    'FREE DELIVERY ON ORDERS OVER R4,500 &nbsp;<span>✦</span>&nbsp; AUTHENTICITY GUARANTEED &nbsp;<span>✦</span>&nbsp; COMPLIMENTARY GIFT WRAPPING',
+    'NEW IN: MAXHOSA AFRICA SS25 COLLECTION HAS LANDED &nbsp;<span>✦</span>&nbsp; SHOP NOW',
+    'PAYFLEX AVAILABLE &nbsp;<span>✦</span>&nbsp; SPLIT INTO 4 INTEREST-FREE PAYMENTS &nbsp;<span>✦</span>&nbsp; UP TO 28% OFF SELECTED PIECES'
+  ];
+  let annIdx = 0;
+  const annEl = document.getElementById('announcement');
+  setInterval(() => {
+    annIdx = (annIdx + 1) % announcements.length;
+    annEl.style.opacity = '0';
+    setTimeout(() => { annEl.innerHTML = announcements[annIdx]; annEl.style.opacity = '1'; }, 500);
+  }, 4500);
+</script>
+</body>
+</html>
